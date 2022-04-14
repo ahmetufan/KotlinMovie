@@ -11,6 +11,6 @@ interface MovieApi {
     fun getData(
         @Header("Authorization") apikey: String,
         @Query("query") query: String
-    ): Call<List<ModelResult>>
+    ): Call<ModelResult>
 
 }

@@ -29,15 +29,14 @@ class MainActivity : AppCompatActivity() {
         val call =
             service.getData("apikey 1BZycnisKZCcDv9hF10pdl:65vV4sqccL7I29VqW1p64O", "superman")
 
-        call.enqueue(object : Callback<List<ModelResult>> {
+        call.enqueue(object : Callback<ModelResult> {
             override fun onResponse(
-                call: Call<List<ModelResult>>,
-                response: Response<List<ModelResult>>
+                call: Call<ModelResult>,
+                response: Response<ModelResult>
             ) {
                 if (response.isSuccessful) {
 
-
-
+                    models = response.body()!!.result
                     //Recyclerview
                     recyclerView.layoutManager=LinearLayoutManager(this@MainActivity)
                     adaptery=Adaptery(models)
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<ModelResult>>, t: Throwable) {
+            override fun onFailure(call: Call<ModelResult>, t: Throwable) {
                 t.printStackTrace()
             }
         })
